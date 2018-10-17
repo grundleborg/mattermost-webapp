@@ -478,6 +478,26 @@ export default class AdminSidebar extends React.Component {
                                     }
                                 />
                             </AdminSidebarSection>
+                            <AdminSidebarSection
+                                name='access-control'
+                                type='text'
+                                title={
+                                    <FormattedMessage
+                                        id='admin.sidebar.access-control'
+                                        defaultMessage='Access Control'
+                                    />
+                                }
+                            >
+                                <AdminSidebarSection
+                                    name='groups'
+                                    title={
+                                        <FormattedMessage
+                                            id='admin.sidebar.groups'
+                                            defaultMessage='Groups'
+                                        />
+                                    }
+                                />
+                            </AdminSidebarSection>
                             {this.props.license.IsLicensed === 'true' &&
                                 <AdminSidebarSection
                                     name='permissions'
