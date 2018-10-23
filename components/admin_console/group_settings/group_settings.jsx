@@ -59,6 +59,7 @@ export default class GroupSettings extends React.PureComponent {
                                     name={item.name}
                                     mattermost_group_id={item.mattermost_group_id}
                                     childGroups={item.children}
+                                    nestingDepth={0}
                                 />
                             );
                         })}

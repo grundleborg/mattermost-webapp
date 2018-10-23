@@ -96,9 +96,6 @@
             .group-name {
                 min-width: 268px;
             }
-            &.no-children {
-                padding: 0 0 0 25px;
-            }
         }
 
         .group-children {
@@ -110,58 +107,6 @@
                 max-height: 400px;
                 transition: max-height 300ms;
             }
-
-            .group-row {
-                padding: 0 0 0 25px;
-                &.no-children {
-                    padding: 0 0 0 50px;
-                }
-            }
-
-
-/*
-            .group-row {
-                padding: 0 0 0 48px;
-
-                .group-name {
-                    min-width: 242px;
-                }
-            }
-
-            .group-row {
-                padding: 0 0 0 25px;
-
-                &.combined {
-                    padding: 0 0 0 48px;
-                }
-
-                .group-name {
-                    min-width: 244px;
-                }
-            }
-
-            .group {
-                .group-row {
-                    padding: 0 0 0 78px;
-
-                    .group-name {
-                        min-width: 213px;
-                    }
-                }
-
-                .group-row {
-                    padding: 0 0 0 60px;
-
-                    &.combined {
-                        padding: 0 0 0 78px;
-                    }
-
-                    .group-name {
-                        min-width: 192px;
-                    }
-                }
-            }
-            */
         }
     }
 

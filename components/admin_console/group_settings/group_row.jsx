@@ -14,6 +14,7 @@ export default class GroupRow extends React.Component {
         childGroups: PropTypes.arrayOf(
             PropTypes.object
         ),
+        nestingDepth: PropTypes.number.isRequired,
     };
 
     constructor(props) {
@@ -44,20 +45,28 @@ export default class GroupRow extends React.Component {
     };
 
     render = () => {
-        let classes = 'group-row';
+        let rowIndent = 25 * this.props.nestingDepth;
         if (!this.props.childGroups || this.props.childGroups.length < 1) {
-            classes += ' no-children';
+            rowIndent += 23;
         }
+
+        const style = {
+            paddingLeft: rowIndent + 'px',
+        };
 
         return (
             <div className='group'>
                 <div
-                    className={classes}
+                    className='group-row'
+                    style={style}
                 >
                     {this.renderArrow()}
                     <GroupCheckbox value={this.state.checkboxState}/>
                     <span className='group-name'>
                         {this.props.name}
+                    </span>
+                    <span className='group-description'>
+                        {this.props.primary_key}
                     </span>
                 </div>
                 {this.props.childGroups && (
@@ -70,6 +79,7 @@ export default class GroupRow extends React.Component {
                                     name={item.name}
                                     mattermost_group_id={item.mattermost_group_id}
                                     childGroups={item.children}
+                                    nestingDepth={this.props.nestingDepth + 1}
                                 />
                             );
                         })}
