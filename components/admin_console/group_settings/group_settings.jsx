@@ -5,8 +5,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
-import GroupRow from 'components/admin_console/group_settings/group_row.jsx'
+import GroupRow from 'components/admin_console/group_settings/group_row.jsx';
+import AdminMarkdownInfoBanner from 'components/admin_console/AdminMarkdownInfoBanner.jsx';
+import AdminHeader from 'components/admin_console/admin_header.jsx';
+import AdminPanel from 'components/admin_console/admin_panel.jsx';
 
 export default class GroupSettings extends React.PureComponent {
     static propTypes = {
@@ -26,45 +28,30 @@ export default class GroupSettings extends React.PureComponent {
 
     renderLdapGroupsPanel = () => {
         return (
-            <div
-                className={'permissions-block'}
+            <AdminPanel
                 id='ldap_groups'
+                titleId='admin.groups.ldapGroupsTitle'
+                titleDefaultMessage='AD/LDAP Groups'
+                subtitleId='admin.groups.ldapGroupsDescription'
+                subtitleDefaultMessage='Link and configure groups from your AD/LDAP to Mattermost. Please ensure you have configured a [group filter](#).'
             >
-                <div
-                    className='header'
-                >
-                    <div>
-                        <h3>
-                            <FormattedMessage
-                                id='admin.groups.ldapGroupsTitle'
-                                defaultMessage='AD/LDAP Groups'
-                            />
-                        </h3>
-                        <span>
-                            <FormattedMessage
-                                id='admin.groups.ldapGroupsDescription'
-                                defaultMessage='Link and configure groups from your AD/LDAP to Mattermost'
-                            />
-                        </span>
-                    </div>
-                </div>
-                <div className='permissions-tree'>
-                    <div className='permissions-tree--header'>
-                        <div className='permission-name'>
+                <div className='groups-tree'>
+                    <div className='groups-tree--header'>
+                        <div className='group-name'>
                             <FormattedMessage
                                 id='admin.groups.groupsTree.nameHeader'
                                 defaultMessage='Name'
                             />
                         </div>
-                        <div className='permission-description'>
+                        <div className='group-description'>
                             <FormattedMessage
                                 id='admin.permissions.groupsTree.mappingHeader'
                                 defaultMessage='AD/LDAP Mapping'
                             />
                         </div>
                     </div>
-                    <div className='permissions-tree--body'>
-                        {this.props.ldapGroups.map(function(item, index) {
+                    <div className='groups-tree--body group-children'>
+                        {this.props.ldapGroups.map((item, index) => {
                             return (
                                 <GroupRow
                                     key={index}
@@ -77,30 +64,22 @@ export default class GroupSettings extends React.PureComponent {
                         })}
                     </div>
                 </div>
-            </div>
+            </AdminPanel>
         );
     };
 
     render = () => {
         return (
             <div className='wrapper--fixed'>
-                <h3 className='admin-console-header'>
-                    <FormattedMessage
-                        id='admin.groups.groupsPageTitle'
-                        defaultMessage='Groups'
-                    />
-                </h3>
+                <AdminHeader
+                    id='admin.groups.groupsPageTitle'
+                    defaultMessage='Groups'
+                />
 
-                <div className={'banner info'}>
-                    <div className='banner__content'>
-                        <span>
-                            <FormattedMarkdownMessage
-                                id='admin.groups.introBanner'
-                                defaultMessage='Lorem Ipsum [documentation](!https://about.mattermost.com).'
-                            />
-                        </span>
-                    </div>
-                </div>
+                <AdminMarkdownInfoBanner
+                    id='admin.groups.introBanner'
+                    defaultMessage={'Groups are a way to organize users and apply actions to all users within that group.\nFor more information on Groups, please see [documentation](!https://about.mattermost.com).'}
+                />
 
                 {this.renderLdapGroupsPanel()}
 

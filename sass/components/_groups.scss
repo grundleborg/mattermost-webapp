@@ -1,0 +1,197 @@
+.groups-tree {
+    @include single-transition(all, .4s, ease-in-out, 0s);
+    max-height: 2000px;
+    padding: .8em 1.5rem;
+
+    .groups-tree--header {
+        border-bottom: 1px solid #cccccc;
+        display: flex;
+        flex-direction: row;
+        font-size: 1.1em;
+        font-weight: bold;
+        padding: .5em 0;
+
+        .group-name {
+            margin-left: 16px;
+            min-width: 300px;
+        }
+
+        .group-description {
+            color: $black;
+            display: block;
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    .groups-tree--body {
+        background-color: $bg--gray;
+        background-image: linear-gradient(transparent 50%, alpha-color($white, .5) 50%);
+        background-size: 68px 68px;
+        cursor: pointer;
+    }
+
+    .group-arrow {
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        margin: 5px 7px 4px 6px;
+        min-height: 10px;
+        min-width: 10px;
+        transition: transform 300ms;
+
+        &.open {
+            transform: rotate(90deg);
+            transform-origin: 55% 50%;
+            transition: transform 300ms;
+            margin-top: 6px
+        }
+    }
+
+    .group-check {
+        align-items: center;
+        border-radius: 3px;
+        border: 2px solid $dark-gray;
+        display: flex;
+        justify-content: space-around;
+        margin-right: 5px;
+        min-height: 18px;
+        min-width: 18px;
+
+        &.checked,
+        &.intermediate {
+            border: 0;
+
+            svg {
+                background: $white;
+                fill: $primary-color;
+            }
+        }
+    }
+
+    .group-name {
+        display: inline-block;
+        min-width: 300px;
+    }
+
+    .group-description {
+        align-items: center;
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        width: 100%;
+        opacity: .65;
+
+        span {
+            display: inline-block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+    }
+
+    .group {
+        .group-row {
+            .group-name {
+                min-width: 268px;
+            }
+            &.no-children {
+                padding: 0 0 0 25px;
+            }
+        }
+
+        .group-name {
+            min-width: 268px;
+        }
+
+        .group-children {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 300ms;
+
+            &.open {
+                max-height: 400px;
+                transition: max-height 300ms;
+            }
+
+            .group-row {
+                padding: 0 0 0 48px;
+
+                .group-name {
+                    min-width: 242px;
+                }
+            }
+
+            .group-row {
+                padding: 0 0 0 25px;
+
+                &.combined {
+                    padding: 0 0 0 48px;
+                }
+
+                .group-name {
+                    min-width: 244px;
+                }
+            }
+
+            .group {
+                .group-row {
+                    padding: 0 0 0 78px;
+
+                    .group-name {
+                        min-width: 213px;
+                    }
+                }
+
+                .group-row {
+                    padding: 0 0 0 60px;
+
+                    &.combined {
+                        padding: 0 0 0 78px;
+                    }
+
+                    .group-name {
+                        min-width: 192px;
+                    }
+                }
+            }
+        }
+    }
+
+    .group-row {
+        align-items: center;
+        border: 2px solid $transparent;
+        display: flex;
+        flex-direction: row;
+        height: 34px;
+
+        &:hover {
+            background-color: lighten($primary-color, 40%);
+            border-left: 2px solid $primary-color;
+            .group-description {
+                opacity: 1;
+            }
+        }
+
+        &.selected {
+            animation-duration: 3s;
+            animation-name: rowhighlight;
+        }
+
+        &.read-only {
+            .group-check {
+                background-color: $gray;
+                border: none;
+
+                &.checked,
+                &.intermediate {
+                    svg {
+                        background: $white;
+                        fill: $gray;
+                    }
+                }
+            }
+        }
+    }
+}
