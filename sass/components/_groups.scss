@@ -101,10 +101,6 @@
             }
         }
 
-        .group-name {
-            min-width: 268px;
-        }
-
         .group-children {
             max-height: 0;
             overflow: hidden;
@@ -115,6 +111,15 @@
                 transition: max-height 300ms;
             }
 
+            .group-row {
+                padding: 0 0 0 25px;
+                &.no-children {
+                    padding: 0 0 0 50px;
+                }
+            }
+
+
+/*
             .group-row {
                 padding: 0 0 0 48px;
 
@@ -156,6 +161,7 @@
                     }
                 }
             }
+            */
         }
     }
 

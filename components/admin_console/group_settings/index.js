@@ -42,7 +42,14 @@ function mapStateToProps(state) {
                     primary_key: 'cfcfdcc6-628b-1038-843e-eb56a8b15249',
                     name: 'team-two',
                     mattermost_group_id: null,
-                    children: null,
+                    children: [
+                        {
+                            primary_key: 'asdfg',
+                            name: 'another-sub-team',
+                            mattermost_group_id: null,
+                            children: null,
+                        },
+                    ],
                 },
             ],
         },
